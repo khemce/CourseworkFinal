@@ -12,7 +12,7 @@ import org.sqlite.SQLiteConfig;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-// change
+// change 2
 public class Main {
 
     public static Connection db = null;

@@ -2,9 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Register</title>
+    <!--all contributes to the styling of my page-->
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+        }
+
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        .registerbtn {
+            background-color: cornflowerblue;
+            color: white;
+            cursor: pointer;
+            padding: 16px 20px;
+            width: 100%;
+        }
+        .signin {
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+<form>
+    <div class="container">
+        <!--just like how I wanted it to be like in my GUI design-->
+        <h2>Register here!</h2>
+        <p>Enter your details here to create an account. By doing this, you can keep track of your playing record and compete against your friends!</p>
+        <!--this is for all the login attributes-->
+        <hr>
+        <label for="FirstName"><b>First Name</b></label>
+        <input type="text" placeholder="Enter First Name" name="FirstName" id="FirstName" required>
 
+        <label for="LastName"><b>Last Name</b></label>
+        <input type="text" placeholder="Enter Last Name" name="LastName" id="LastName" required>
+
+        <label for="Username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="Username" id="Username" required>
+
+        <label for="Password"><b>Password</b></label>
+        <input type="text" placeholder="Enter Password" name="Password" id="Password" required>
+        <hr>
+
+        <button type="submit" class="registerbtn">Register</button>
+    </div>
+    <div class="container signin">
+        <p>Already have an account? <a href="http://localhost:8081/client/login.html">Sign in</a>.</p>
+    </div>
+</form>
 </body>
 </html>
+
+

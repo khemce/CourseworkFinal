@@ -2,9 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
 </head>
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    form {border: 2px solid #f1f1f1;}
+
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: cornflowerblue;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+</style>
 <body>
+
+<h1>Log in here to play!</h1>
+<hr>
+<div class ="container">
+    <label for="Username">
+    <b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label for="Password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+    <hr>
+    <button type="submit">Login</button>
+    <div class="container login">
+        <p>Don't have an account? <a href="http://localhost:8081/client/register.html">Register here</a>.</p>
+    </div>
+
+</div>
 
 </body>
 </html>

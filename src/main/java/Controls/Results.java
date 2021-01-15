@@ -1,12 +1,10 @@
 package controllers;
 
+import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +13,7 @@ import java.sql.ResultSet;
 @Consumes(MediaType.MULTIPART_FORM_DATA)    //I used @GET because I am using a SELECT query. The following method is a HTTP GET request.
 @Produces(MediaType.APPLICATION_JSON)
 
-public class Results{
+public class Results {
     @GET
     @Path("list")
     public String ResultsList() {
@@ -24,7 +22,7 @@ public class Results{
         try {
             PreparedStatement ps = server.Main.db.prepareStatement("SELECT Wins, Draws, Losses, PlayerID FROM Results");
             ResultSet results = ps.executeQuery();
-            while (results.next()==true) { //Loops throw my Results table as long as there is another record after.
+            while (results.next() == true) { //Loops throw my Results table as long as there is another record after.
                 JSONObject row = new JSONObject();
                 row.put("Wins", results.getString(1));
                 row.put("Draws", results.getString(2));
@@ -38,4 +36,45 @@ public class Results{
             return "{\"Error\": \"Unable to list items.  Error code xx.\"}";
         }
     }
+
+
+    @POST
+    @Path("update_wins")
+    public String updateResults(@FormDataParam("PlayerID") Integer PlayerID, @FormDataParam("Wins") Integer Wins){
+        try {
+            System.out.println("Invoked Results.UpdateResults/update PlayerID=" + PlayerID);
+            PreparedStatement ps = server.Main.db.prepareStatement("UPDATE Results SET Wins = ? WHERE PlayerID = ?");
+            ps.setInt(1, PlayerID);
+            ps.setInt(2, Wins);
+            ps.execute();
+            return "{\"OK\": \"Results updated\"}";
+        } catch (Exception exception) {
+            System.out.println("Database error: " + exception.getMessage());
+            return "{\"Error\": \"Unable to update item, please see server console for more info.\"}";
+        }
+
+
+    }
+
+    @POST
+    @Path("add")
+    public String ResultsAdd(@FormDataParam("Wins") Integer Wins, @FormDataParam("Draws") Integer Draws, @FormDataParam("Losses") Integer Losses, @FormDataParam("PlayerID") Integer PlayerID) {
+        System.out.println("Invoked Results.ResultsAdd()");
+        try {
+            PreparedStatement ps = server.Main.db.prepareStatement("INSERT INTO Results (Wins, Draws, Losses, PlayerID) VALUES (?, ?, ?, ?)");
+            ps.setInt(1, Wins);
+            ps.setInt(2, Draws);
+            ps.setInt(3, Losses);
+            ps.setInt(4, PlayerID);
+            ps.execute();
+            return "{\"OK\": \"Added results.\"}";
+        } catch (Exception exception) {
+            System.out.println("Database error: " + exception.getMessage());
+            return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
+        }
+
+    }
+
 }
+
+

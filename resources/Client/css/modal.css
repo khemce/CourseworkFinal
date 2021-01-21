@@ -1,0 +1,44 @@
+/*the modal class is going to cover the entire page while the modal content is going to be the box in the middle*/
+
+.modal {
+    display: none; /*dont want to display it at first*!*/
+    position: fixed;
+    z-index: 1; /*so its on the top*/
+    left: 0; /*starts from the top left corner and fills the screen*/
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.5); /*so that is slightly see through*/
+    --modal-duration: 1s; /*how long the modal lasts for*/
+}
+
+.modal-content {
+    background-color: #fff;
+    text-align: center;
+    margin: 10% auto;
+    width: 350px;
+    border-radius: 10px;
+    padding: 3rem;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.5), 0 10px 20px 0 rgba(0,0,0,0.5);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+}
+
+.modal-content h1 {
+    margin-bottom: 2rem;
+}
+
+.modal-content p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+@keyframes modalopen { /*so that the modal fades in*/
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

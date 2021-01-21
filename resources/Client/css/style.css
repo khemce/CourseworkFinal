@@ -1,0 +1,101 @@
+@import url(https://fonts.googleapis.com.css?family=Itim);
+
+:root {
+    --primary-color: #003699;
+    --dark-color: #333333;
+    --light-color: #f4f4f4;
+    --lose-color: #dc3545;
+    --win-color: #28a745;
+
+}
+
+*{
+    box-sizing: border-box;
+    padding:0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Itim', sans-serif;
+    line-height: 2;
+    color: #333;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 2rem;
+    text-align: center; /*now everything is in center of the screen except modal*/
+}
+
+.quit-btn { /*initially hidden*/
+    display: none; /*so that I can see it at the beginning*/
+    background: var(--light-color);
+    color: #333;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin-bottom: 2rem;
+}
+
+.quit-btn:hover {
+    background: cornflowerblue;
+    color:#fff;
+
+
+}
+
+.header {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.header h1{
+    margin-bottom: 1rem ;
+}
+
+.score {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /*gives two even columns to display the score*/
+    font-size: 1.2rem;
+    color: #fff; /*I put the color here because it will affect both scores.*/
+}
+
+.score p:first-child { /*this will only select the first paragraph (player)*/
+    background: cornflowerblue;
+}
+
+.score p:last-child { /*this will only affect the second paragraph (computer)*/
+    background: red;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.option {
+    cursor: pointer; /*because I want a cursor to hover over the pictures*/
+}
+
+.option:hover { /*change the colour when i hover*/
+    color: cornflowerblue;
+}
+
+.text-win {
+    color: green;
+}
+
+.text-lose {
+    color: red;
+}
+
+.text-draw {
+    color: cornflowerblue;
+}

@@ -40,7 +40,7 @@ public class Results {
 
     @POST
     @Path("update_wins")
-    public String updateResults(@FormDataParam("PlayerID") Integer PlayerID, @FormDataParam("Wins") Integer Wins){
+    public String updateWins(@FormDataParam("PlayerID") Integer PlayerID, @FormDataParam("Wins") Integer Wins){
         try {
             System.out.println("Invoked Results.UpdateResults/update PlayerID=" + PlayerID);
             PreparedStatement ps = server.Main.db.prepareStatement("UPDATE Results SET Wins = ? WHERE PlayerID = ?");
@@ -55,6 +55,43 @@ public class Results {
 
 
     }
+
+    @POST
+    @Path("update_draws")
+    public String updateDraws(@FormDataParam("PlayerID") Integer PlayerID, @FormDataParam("Draws") Integer Draws){
+        try {
+            System.out.println("Invoked Results.UpdateResults/update PlayerID=" + PlayerID);
+            PreparedStatement ps = server.Main.db.prepareStatement("UPDATE Results SET Draws = ? WHERE PlayerID = ?");
+            ps.setInt(1, PlayerID);
+            ps.setInt(2, Draws);
+            ps.execute();
+            return "{\"OK\": \"Results updated\"}";
+        } catch (Exception exception) {
+            System.out.println("Database error: " + exception.getMessage());
+            return "{\"Error\": \"Unable to update item, please see server console for more info.\"}";
+        }
+
+
+    }
+
+    @POST
+    @Path("update_losses")
+    public String updateLosses(@FormDataParam("PlayerID") Integer PlayerID, @FormDataParam("Losses") Integer Losses){
+        try {
+            System.out.println("Invoked Results.UpdateResults/update PlayerID=" + PlayerID);
+            PreparedStatement ps = server.Main.db.prepareStatement("UPDATE Results SET Losses = ? WHERE PlayerID = ?");
+            ps.setInt(1, PlayerID);
+            ps.setInt(2, Losses);
+            ps.execute();
+            return "{\"OK\": \"Results updated\"}";
+        } catch (Exception exception) {
+            System.out.println("Database error: " + exception.getMessage());
+            return "{\"Error\": \"Unable to update item, please see server console for more info.\"}";
+        }
+
+
+    }
+
 
     @POST
     @Path("add")

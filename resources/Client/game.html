@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <!--this is to import my css sheets-->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/modal.css" />
     <!--using fontawesome for my icons so i imported my personal kit code-->
     <script src="https://kit.fontawesome.com/5fcc784a6d.js" crossorigin="anonymous"></script>
     <title>Rock Paper Scissors</title>
@@ -16,33 +16,37 @@
     </style>
 </head>
 <body>
-<header class="container">
+
+<div class="container">
     <header class="header">
         <h1> Rock Paper Scissors</h1>
         <!--coding button which resets scores to zero-->
-        <button id="quit" class ="quit-btn">End Game</button>
+        <a href="http://localhost:8081/client/login.html"><button id="quit" class ="quit-btn">End Game</button></a>
         <div id="score" class="score">
             <p>Player: 0</p>
-            <p>AI: 0</p>
-            <h2>Choose your attack!</h2>
-            <div class="options"><!--these are all of the options the user can select (rock, paper, scissors). I used different attributes to change size, colour etc.-->
-                <i id="rock" class="far fa-hand-rock fa-10x" style="text-shadow:1px 1px 2px #000000;"></i>
-                <i id="paper" class="far fa-hand-paper fa-10x" style="text-shadow:1px 1px 2px #000000;"></i>
-                <i id="scissors" class="far fa-hand-scissors fa-10x" style="text-shadow:1px 1px 2px #000000;"></i>
-            </div>
-
-            <!--modal that doesnt show-->
-            <div class="modal">
-                <div id="result" class="modal-content">
-                    <h1>You Win</h1>
-                    <i class="far fa-hand-rock fa-10x" style="text-shadow:1px 1px 2px #000000;"></i>
-                    <p>Computer Chose Rock</p>
-                </div>
-            </div>
+            <p>Computer: 0</p>
         </div>
     </header>
-</header>
+    <h2>Choose your attack!</h2>
+    <div class="options"><!--these are all of the options the user can select (rock, paper, scissors). I used different attributes to change size, colour etc.-->
+        <i id="rock" class="option far fa-hand-rock fa-10x" style="text-shadow:1px 1px 2px #000000;"></i>
+        <i id="paper" class="option far fa-hand-paper fa-10x" style="text-shadow:1px 1px 2px #000000;"></i>
+        <i id="scissors" class="option far fa-hand-scissors fa-10x" style="text-shadow:1px 1px 2px #000000;"></i>
+    </div>
+</div>
+
+    <!--modal that doesnt show-->
+    <div class="modal">
+        <div id="result" class="modal-content">
+            <h1 class="text-win">You Win!</h1>
+            <i class="far fa-hand-rock fa-10x" style="text-shadow:1px 1px 2px #000000;"></i>
+            <p>Computer Chose Rock</p>
+        </div>
+    </div>
+
 <!--importing my javascript-->
 <script src="main.js"></script>
+
+
 </body>
 </html>

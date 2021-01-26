@@ -4,8 +4,11 @@ const score = document.getElementById('score');
 const result = document.getElementById('result');
 const quit = document.getElementById('quit');
 const modal = document.querySelector('.modal');
+/*let PlayerID = getPlayerID();*/
+let UserName = document.getElementById("UserName");
+let Password = document.getElementById("Password");
 
-const scoreboard = {
+let scoreboard = {
     player: 0,
     computer: 0
 }
@@ -104,3 +107,59 @@ function clearModal(e) {
 /*loop through the options using a for loop*/
 options.forEach(option => option.addEventListener('click', play)); /*this essentially waits for the player to click a button*/
 window.addEventListener('click', clearModal); /*to exit the modal*/
+
+function registerPlayer() {
+    console.log("Invoked AddPlayer()");
+    const formData = new FormData(document.getElementById('InputPlayerDetailsR'));
+    let url = "/Players/add";
+    fetch(url, {
+        method: "POST",
+        body: formData,
+    }).then(response => {
+        return response.json()
+    }).then(response => {
+        if (response.hasOwnProperty("Error")) {
+            alert(JSON.stringify(response));
+        } else {
+            window.open("http://localhost:8081/client/game.html", "_self");   //URL replaces the current page.  Create a new html file
+        }                                                  //in the client folder called welcome.html
+    });
+}
+
+function getPScore(){   //API used to fetch wins so that it can be the initial score
+    console.log("Invoked getPScore()");
+    let url="/Results/get_wins/{PlayerID}";
+    fetch(url,{
+        method:"GET",
+    }).then(response=>{
+        return response.json();
+    }).then(response=>{
+        if(response.hasOwnProperty("Error")){
+            alert(JSON.stringify(response));
+        } else{
+            return(response.Wins);
+            console.log(response.Wins);
+        }
+    })
+
+}
+
+function loginPlayer() {
+    console.log("Invoked loginPlayer()");
+    const formData = new FormData(document.getElementById('InputPlayerDetailsL'));
+    let url = "/Players/login";
+    fetch(url, {
+        method: "POST",
+        body: formData,
+    }).then(response => {
+        return response.json()
+    }).then(response => {
+        if (response.hasOwnProperty("Error")) {
+            alert(JSON.stringify(response));
+        } else {
+            Cookies.set("PlayerID", response.PlayerID);
+            window.open("http://localhost:8081/client/game.html", "_self");   //URL replaces the current page.  Create a new html file
+        }                                                  //in the client folder called welcome.html
+    });
+}
+

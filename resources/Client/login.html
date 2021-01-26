@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <script src="main.js"></script>
+
 </head>
 <style>
-    body {font-family: Arial, Helvetica, sans-serif;}
+    body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
     form {border: 2px solid #f1f1f1;}
 
     input[type=text], input[type=password] {
@@ -28,23 +30,23 @@
     }
 </style>
 <body>
-
+<form id="InputPlayerDetailsL">
 <h1>Log in here to play!</h1>
 <hr>
 <div class ="container">
-    <label for="Username">
-    <b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label for="Username" id="UserName"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="Username" required>
 
-    <label for="Password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <label for="Password" id="Password"><b>Password</b></label>
+    <input type="text" placeholder="Enter Password" name="Password" required>
     <hr>
-    <button type="submit">Login</button>
+
     <div class="container login">
         <p>Don't have an account? <a href="http://localhost:8081/client/register.html">Register here</a>.</p>
     </div>
 
+    <button type="submit" onclick='loginPlayer();' class="button button-block">Login</button>
 </div>
-
+</form>
 </body>
 </html>

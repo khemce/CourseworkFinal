@@ -37,10 +37,54 @@ public class Results {
         }
     }
 
+    @GET
+    @Path("get_wins/{PlayerID}")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String GetWins(@PathParam("PlayerID") Integer PlayerID) {
+        System.out.println("Invoked Players.GetPlayers() with PlayerID " + PlayerID);
+        try {
+            PreparedStatement ps = server.Main.db.prepareStatement("SELECT Wins FROM Results WHERE PlayerID = ?");
+            ps.setInt(1, PlayerID);
+            ResultSet results = ps.executeQuery();
+            JSONObject response = new JSONObject();
+            if (results.next()) {
+                response.put("PlayerID", PlayerID);
+                response.put("Wins", results.getString(1));
+            }
+            return response.toString();
+        } catch (Exception exception) {
+            System.out.println("Database error: " + exception.getMessage());
+            return "{Error: Unable to get item, please see server console for more info.}";
+        }
+    }
+
+    @GET
+    @Path("get_losses/{PlayerID}")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String GetLosses(@CookieParam("PlayerID") Integer PlayerID) {
+        System.out.println("Invoked Players.GetPlayers() with PlayerID " + PlayerID);
+        try {
+            PreparedStatement ps = server.Main.db.prepareStatement("SELECT Losses FROM Results WHERE PlayerID = ?");
+            ps.setInt(1, PlayerID);
+            ResultSet results = ps.executeQuery();
+            JSONObject response = new JSONObject();
+            if (results.next()) {
+                response.put("PlayerID", PlayerID);
+                response.put("Losses", results.getString(1));
+            }
+            return response.toString();
+        } catch (Exception exception) {
+            System.out.println("Database error: " + exception.getMessage());
+            return "{Error: Unable to get item, please see server console for more info.}";
+        }
+    }
+
 
     @POST
     @Path("update_wins")
-    public String updateWins(@FormDataParam("PlayerID") Integer PlayerID, @FormDataParam("Wins") Integer Wins){
+    public String updateWins(@CookieParam("PlayerID") Integer PlayerID, @FormDataParam("Wins") Integer Wins){
         try {
             System.out.println("Invoked Results.UpdateResults/update PlayerID=" + PlayerID);
             PreparedStatement ps = server.Main.db.prepareStatement("UPDATE Results SET Wins = ? WHERE PlayerID = ?");
@@ -58,7 +102,7 @@ public class Results {
 
     @POST
     @Path("update_draws")
-    public String updateDraws(@FormDataParam("PlayerID") Integer PlayerID, @FormDataParam("Draws") Integer Draws){
+    public String updateDraws(@CookieParam("PlayerID") Integer PlayerID, @FormDataParam("Draws") Integer Draws){
         try {
             System.out.println("Invoked Results.UpdateResults/update PlayerID=" + PlayerID);
             PreparedStatement ps = server.Main.db.prepareStatement("UPDATE Results SET Draws = ? WHERE PlayerID = ?");
@@ -76,7 +120,7 @@ public class Results {
 
     @POST
     @Path("update_losses")
-    public String updateLosses(@FormDataParam("PlayerID") Integer PlayerID, @FormDataParam("Losses") Integer Losses){
+    public String updateLosses(@CookieParam("PlayerID") Integer PlayerID, @FormDataParam("Losses") Integer Losses){
         try {
             System.out.println("Invoked Results.UpdateResults/update PlayerID=" + PlayerID);
             PreparedStatement ps = server.Main.db.prepareStatement("UPDATE Results SET Losses = ? WHERE PlayerID = ?");

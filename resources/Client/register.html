@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <meta charset="UTF-8">
     <title>Register</title>
     <!--all contributes to the styling of my page-->
@@ -8,6 +10,7 @@
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: white;
+            text-align: center;
         }
 
         input[type=text], input[type=password] {
@@ -37,7 +40,7 @@
     </style>
 </head>
 <body>
-<form>
+<form id="InputPlayerDetailsR">
     <div class="container">
         <!--just like how I wanted it to be like in my GUI design-->
         <h2>Register here!</h2>
@@ -57,12 +60,15 @@
         <input type="text" placeholder="Enter Password" name="Password" id="Password" required>
         <hr>
 
-        <button type="submit" class="registerbtn">Register</button>
+<!--        <button type="submit" class="registerbtn">Register</button>-->
+
     </div>
     <div class="container signin">
         <p>Already have an account? <a href="http://localhost:8081/client/login.html">Sign in</a>.</p>
     </div>
 </form>
+<!--<button onclick='registerPlayer();'>Register</button>-->
+<button type="submit" onclick='registerPlayer();' class="button button-block">Register</button>
 </body>
 </html>
 
